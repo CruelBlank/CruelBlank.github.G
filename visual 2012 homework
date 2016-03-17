@@ -1,0 +1,24 @@
+#include<iostream>  //fourthly  section  homework  but l cant finish with  it by myself
+using namespace std;
+int main()
+{   int c(0);
+    int u(0);
+	int size(5);
+		int* pvalue=new int[5];
+	while(true){
+		int i(0);
+       cin>>pvalue[i];
+	   i++;
+	   if(i==size){
+		  int* mid=pvalue;
+		  size+=5;
+		  pvalue=new int [size];
+		  for(u=0;u<size-5;u++){
+			  pvalue[u]=mid[u];
+	   };
+      for(c=0;c<i;c++){
+		  cout<<pvalue[c];
+	  }
+	   }
+	}
+}
