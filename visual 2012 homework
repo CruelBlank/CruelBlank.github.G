@@ -1,5 +1,5 @@
-#include<iostream>  //fourthly  section  homework  but l cant finish with  it by myself
-using namespace std;
+#include<iostream>     //this a project to Infinite number input and Assigned address
+using namespace std
 int main()
 {   int c(0);
     int u(0);
@@ -16,9 +16,11 @@ int main()
 		  for(u=0;u<size-5;u++){
 			  pvalue[u]=mid[u];
 	   };
-      for(c=0;c<i;c++){
-		  cout<<pvalue[c];
+      
 	  }
-	   }
-	}
-}
+	 for(c=0;c<i;c++){
+		  cout<<pvalue[c];  }
+          }
+    delete []pvalue;
+     pvalue=nullptr;
+   }
