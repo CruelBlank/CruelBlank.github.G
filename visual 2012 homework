@@ -107,10 +107,10 @@ double term(char* str,int& index)
 	value=number(str,index);
 	while(true)
 	{
-	if(*(str+index++)=='*')
-		value*=number(str,index);
-	else if(*(str+index++)=='/')
-		value/=number(str,index);
+	if(*(str+index)=='*')
+		value*=number(str,++index);
+	else if(*(str+index)=='/')
+		value/=number(str,++index);
 	else 
 		break;
 }
