@@ -28,13 +28,111 @@ int main()
 
 
 
-void eatspace(char* str)  //function to eliminate form a string 
+#include <iostream>   //fuction  to complute  figure
+#include <cstdlib>
+#include <cctype>
+using namespace std;
+void eatspaces(char* str);
+double expr(char* str);
+double term(char*str,int& index);
+double number(char*str,int& index);
+const int MAX(80);
+int main()
 {
-    int i(0);
-    int j(0);
-    
-    while((*(str+i)=*(str+j++)) != '\0')
-         if(*(str+i) != ' ')
-           i++;
-           return;
+	char buffer[MAX]={0};
+	cout<<endl
+		<<"welcome to your friendly calculator."
+		<<endl
+		<<"enter an expression, or an empty line to quit."
+        <<endl;
+	for(;;)
+	{
+		cin.getline(buffer,sizeof buffer);
+		eatspaces(buffer);
+		
+		if(!buffer[0])
+			return 0;
+
+		try
+		{
+			cout<<"\T="<<expr(buffer)
+				<<endl<<endl;
+		}
+		catch(const char*pEx)
+		{
+			cerr<<pEx<<endl;
+			cerr<<"ending program."<<endl;
+			return 1;
+		}
+	}
 }
+void eatspaces(char* str)
+{
+	int j(0);
+	int i(0);
+	while((*(str+i)=*(str+j++)) !='\0')
+		if(*(str+i) !=' ')
+			i++;
+	return;
+}
+double expr(char* str)
+{
+	double value(0.0);
+	int index(0);
+
+	value=term(str,index);
+	for(;;)
+	{
+		switch(*(str+index++))
+		{
+		    case'\0':
+				return value;
+			case'+':
+				value+=term(str,index);
+				break;
+			case'-':
+				value-=term(str,index);
+				break;
+			default:
+				char message[38]="expression evaluation error.found:";
+				strncat_s(message,str+index-1,1);
+				throw message;
+				break;
+		}
+	}
+}
+double term(char* str,int& index)
+{
+	double value(0.0);
+	value=number(str,index);
+	while(true)
+	{
+	if(*(str+index++)=='*')
+		value*=number(str,index);
+	else if(*(str+index++)=='/')
+		value/=number(str,index);
+	else 
+		break;
+}
+   return  value;
+}
+double number(char* str,int& index)
+{
+	double value(0.0);
+    while(isdigit(*(str +index)))
+		value = 10*value +(*(str+index++)-'0');
+	if(*(str+index)!='.')
+		return value;
+
+double factor(1.0);
+while(isdigit(*(str+(++index))))
+{
+	
+	factor*=0.1;
+	value=value+(*(str+index)-'0')*factor;
+}
+return value;
+}
+
+		
+
